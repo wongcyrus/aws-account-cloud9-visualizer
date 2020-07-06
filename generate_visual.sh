@@ -1,4 +1,14 @@
-sudo yum install -y jq
+linux=$(uname -a)
+
+if [[ $linux == *"Ubuntu"* ]]
+then
+    echo "Ubuntu Linux"
+    sudo apt-get install -y jq
+else
+    echo "Amazon Linux"
+    sudo yum install -y jq
+fi
+
 aws_access_key_id=$(aws configure get default.aws_access_key_id)
 aws_secret_access_key=$(aws configure get default.aws_secret_access_key)
 aws_session_token=$(aws configure get default.aws_session_token)
