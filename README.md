@@ -1,4 +1,4 @@
-# AWS Account Cloud9 Visualiztion
+# AWS Account Cloud9 Visualizer
 Collection of tools to visualize AWS account. 
 
 ## In Cloud9 Terminal
