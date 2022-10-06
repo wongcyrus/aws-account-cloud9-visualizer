@@ -16,10 +16,10 @@ rm -rf cloudmapper
 rm -rf aws-security-viz
 rm resize.sh
 
-docker tag cloudmapper wongcyrus/cloudmapper:1.0
-docker tag aws-security-viz wongcyrus/aws-security-viz:1.0
-docker push wongcyrus/cloudmapper:1.0
-docker push wongcyrus/aws-security-viz:1.0
+docker tag cloudmapper wongcyrus/cloudmapper:1.1
+docker tag aws-security-viz wongcyrus/aws-security-viz:1.1
+docker push wongcyrus/cloudmapper:1.1
+docker push wongcyrus/aws-security-viz:1.1
 
 
 

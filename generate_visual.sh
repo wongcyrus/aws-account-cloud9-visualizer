@@ -21,7 +21,7 @@ docker run -it --rm \
     -e AWS_ACCESS_KEY_ID=$aws_access_key_id \
     -e AWS_SECRET_ACCESS_KEY=$aws_secret_access_key \
     -e AWS_SESSION_TOKEN=$aws_session_token \
-    wongcyrus/aws-security-viz:1.0
+    wongcyrus/aws-security-viz:1.1
     
 docker run -it --rm \
     -e AWS_ACCESS_KEY_ID=$aws_access_key_id \
@@ -29,9 +29,11 @@ docker run -it --rm \
     -e AWS_SESSION_TOKEN=$aws_session_token \
     -p 0.0.0.0:8080:8000 \
     -v $(pwd)/data:/data \
-     wongcyrus/cloudmapper:1.0 /bin/bash -c \
+    -v $(pwd)/account-data:/opt/cloudmapper/account-data \
+    wongcyrus/cloudmapper:1.1 /bin/bash -c \
 "python cloudmapper.py configure add-account --config-file config.json --name student --id $aws_account; \
 python cloudmapper.py collect --account student --regions $region; \
+python cloudmapper.py report  --account student --regions $region; \
 python cloudmapper.py prepare --account student --regions $region; \
-cp /opt/cloudmapper/web/data.json /data; \
+cp -r /opt/cloudmapper/web/* /data; \
 python cloudmapper.py webserver --public"    
