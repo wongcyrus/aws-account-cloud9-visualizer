@@ -12,7 +12,6 @@ fi
 aws_access_key_id=$(aws configure get default.aws_access_key_id)
 aws_secret_access_key=$(aws configure get default.aws_secret_access_key)
 aws_session_token=$(aws configure get default.aws_session_token)
-region=$(aws configure get region)
 aws_account=$(aws sts get-caller-identity | jq -r .Account)
 
 docker run -it --rm \
@@ -32,9 +31,9 @@ docker run -it --rm \
     -v $(pwd)/account-data:/opt/cloudmapper/account-data \
     wongcyrus/cloudmapper:1.1 /bin/bash -c \
 "python cloudmapper.py configure add-account --config-file config.json --name student --id $aws_account; \
-python cloudmapper.py collect --account student --regions $region; \
-python cloudmapper.py report  --account student --regions $region; \
-python cloudmapper.py prepare --account student --regions $region; \
+python cloudmapper.py collect --account student ;\
+python cloudmapper.py report  --account student ;\
+python cloudmapper.py prepare --account student ;\
 python cloudmapper.py stats --account student; \
 cp -r /opt/cloudmapper/web/* /data; \
 cp -r /opt/cloudmapper/resource_stats.png /data; \
