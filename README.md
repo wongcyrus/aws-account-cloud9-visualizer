@@ -2,12 +2,26 @@
 Collection of tools to visualize AWS account. 
 
 ## In Cloud9 Terminal
-
 ```
 git clone https://github.com/wongcyrus/aws-account-cloud9-visualizer
 cd aws-account-cloud9-visualizer
+```
+
+To generate visualizations in your default region
+```
 ./generate_visual.sh
 ```
+
+To generate visualizations in specific regions
+```
+./generate_visual.sh -r ap-northeast-1,us-east-1
+```
+
+To generate visualizations for all regions
+```
+./generate_visual_global.sh -r ap-northeast-1,us-east-1
+```
+
 
 To remove previous results
 ```

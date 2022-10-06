@@ -1,3 +1,10 @@
+while getopts r: flag
+do
+    case "${flag}" in
+        r) region=${OPTARG};;
+    esac
+done
+
 linux=$(uname -a)
 
 if [[ $linux == *"Ubuntu"* ]]
@@ -12,8 +19,14 @@ fi
 aws_access_key_id=$(aws configure get default.aws_access_key_id)
 aws_secret_access_key=$(aws configure get default.aws_secret_access_key)
 aws_session_token=$(aws configure get default.aws_session_token)
-region=$(aws configure get region)
+# region="ap-northeast-1,us-east-1"
+# $(aws configure get region)
 aws_account=$(aws sts get-caller-identity | jq -r .Account)
+
+if [ -z ${region+x} ]
+then 
+    region=$(aws configure get region) 
+fi
 
 docker run -it --rm \
     -p 0.0.0.0:8081:3000 \
